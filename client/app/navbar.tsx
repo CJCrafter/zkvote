@@ -5,7 +5,7 @@ import IconButton from "@/app/util/iconbutton";
 export default function Navbar() {
     return (
         <>
-            <nav className="bg-gray-300 text-white flex justify-between items-center p-4">
+            <nav className="bg-white text-black flex justify-between items-center p-4">
                 <Image
                     src="/zk-logo.svg"
                     width={128}
