@@ -1,4 +1,5 @@
-import Image from "next/image";
+import ButtonList from "@/app/util/panelbuttonlist";
+import PanelButton from "@/app/util/panelbutton";
 
 export default function Home() {
     return (
@@ -9,9 +10,10 @@ export default function Home() {
             </div>
 
             {/* Big panel buttons for registering and voting */}
-            <div>
-
-            </div>
+            <ButtonList>
+                <PanelButton href="/register" text="Register" description="Register to vote" />
+                <PanelButton href="/vote" text="Vote" description="Vote in the 2024 election" />
+            </ButtonList>
         </div>
     );
 }
