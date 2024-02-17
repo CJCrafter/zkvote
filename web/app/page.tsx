@@ -6,23 +6,27 @@ import Navbar from "@/app/navbar";
 export default function Home() {
     return (
         <main>
-            <Navbar />
+            <div className="relative bg-[url('/rect3.png')] bg-cover bg-blue-600 top-0 left-0 w-screen h-screen">
+                <Navbar/>
 
-            <div align="center">
-                <Image
-                    src="/i-voted.png"
-                    width={720}
-                    height={100}
-                    alt="woman voting"
-                />
-            </div>
+                <div className="pt-80 text-center align-middle">
+                    <div className="
+                        font-nasa text-9xl
+                        text-white
+                        bg-black p-2
+                    ">
+                        VOTE
+                    </div>
+                </div>
 
-            {/* Big panel buttons for registering and voting */}
-            <div className="flex justify-center items-center">
-            <ButtonList>
-                <PanelButton href="/register" text="Register" description="Register to vote"/>
-                <PanelButton href="/vote" text="Vote" description="Vote in the 2024 election"/>
-            </ButtonList>
+                <div className="absolute bottom-0 left-0 right-0">
+                    <div className="flex justify-center items-center">
+                        <ButtonList>
+                            <PanelButton href="/register" text="Register" description="Register to vote"/>
+                            <PanelButton href="/vote" text="Vote" description="Vote in the 2024 election"/>
+                        </ButtonList>
+                    </div>
+                </div>
             </div>
         </main>
     );

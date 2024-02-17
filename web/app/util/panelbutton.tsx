@@ -6,15 +6,15 @@ export default function PanelButton(
             href={href}
             className="
                 group rounded-lg border border-transparent px-5 py-4 m-2
-                border-gray-200 bg-gray-100
-                hover:border-gray-400 hover:bg-gray-300 transition-colors
+                border-gray-700 bg-gradient-to-r from-cyan-500 to-blue-500
+                hover:border-gray-800 hover:from-cyan-600 hover:to-blue-600 transition-colors
             "
             target="_blank"
             rel="noopener noreferrer"
         >
             <h2 className="mb-3 text-2xl font-semibold">
                 {text}{" "}
-                <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
+                <span className="inline-block transition-transform group-hover:translate-x-2 motion-reduce:transform-none">
                     →
                 </span>
             </h2>
