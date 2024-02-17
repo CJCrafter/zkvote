@@ -1,3 +1,7 @@
 export default function RegisterPage() {
-    return <></>
+    return (
+        <div>
+            
+        </div>
+    );
 }
