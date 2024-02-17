@@ -10,7 +10,7 @@ async function verify(proof, publicSignals) {
     if (res === true) {
         console.log("Verification OK");
         return true;
-    } else {
+      } else {
         console.log("Invalid proof");
         return false;
     }

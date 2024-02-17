@@ -1,7 +1,7 @@
 const circomlibjs = require("circomlibjs");
 const appRoot = require('app-root-path');
 const { voters } = require(`${appRoot}/voters-list.json`);
-const merkle = require("./merkletree.js");
+const merkle = require("./merkleTree.js");
 
 async function initiatePoll(){
     const poseidon = await circomlibjs.buildPoseidonOpt();
