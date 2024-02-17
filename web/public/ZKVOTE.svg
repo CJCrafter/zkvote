@@ -24,8 +24,8 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      inkscape:zoom="0.81124428"
-     inkscape:cx="460.40386"
-     inkscape:cy="506.01281"
+     inkscape:cx="334.67108"
+     inkscape:cy="395.07212"
      inkscape:window-width="1464"
      inkscape:window-height="916"
      inkscape:window-x="53"
@@ -57,27 +57,16 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1">
-    <rect
-       style="fill:#000000;stroke-width:2.5266;stroke-linejoin:round"
-       id="rect2"
-       width="89.689888"
-       height="18.916416"
-       x="39.789703"
-       y="42.032921"
-       rx="7.1242056"
-       inkscape:export-filename="zk-logo.png"
-       inkscape:export-xdpi="300"
-       inkscape:export-ydpi="300" />
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,6.1967566,-2.2830159)"
        id="text1"
-       style="font-weight:bold;font-size:53.3333px;font-family:Junegull;-inkscape-font-specification:'Junegull Bold';letter-spacing:7.77px;white-space:pre;shape-inside:url(#rect1);fill:#0000ff;stroke-width:22.8813;stroke-linejoin:round"><tspan
+       style="font-weight:bold;font-size:53.3333px;font-family:Junegull;-inkscape-font-specification:'Junegull Bold';letter-spacing:7.77px;white-space:pre;shape-inside:url(#rect1);fill:#0000ff;stroke-width:2.83464571;stroke-linejoin:round;stroke-dasharray:none;stroke:none;stroke-opacity:1"><tspan
          x="149.1543"
          y="221.90752"
-         id="tspan6"><tspan
+         id="tspan4"><tspan
            style="font-weight:normal;font-family:Gotham;-inkscape-font-specification:Gotham"
-           id="tspan1">Z</tspan></tspan></text>
+           id="tspan3">Z</tspan></tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,16.037701,-2.2830159)"
@@ -85,19 +74,19 @@
        style="font-weight:bold;font-size:53.3333px;font-family:Junegull;-inkscape-font-specification:'Junegull Bold';letter-spacing:7.77px;white-space:pre;shape-inside:url(#rect1-2);fill:#ff0000;stroke-width:22.8813;stroke-linejoin:round"><tspan
          x="149.1543"
          y="221.90752"
-         id="tspan9"><tspan
+         id="tspan6"><tspan
            style="font-family:Gotham;-inkscape-font-specification:'Gotham Bold'"
-           id="tspan8">K</tspan></tspan></text>
+           id="tspan5">K</tspan></tspan></text>
     <text
        xml:space="preserve"
        transform="matrix(0.26458333,0,0,0.26458333,26.914414,-2.3747381)"
        id="text1-0"
-       style="font-weight:bold;font-size:53.3333px;font-family:Junegull;-inkscape-font-specification:'Junegull Bold';letter-spacing:0.47px;white-space:pre;shape-inside:url(#rect1-9);fill:#0000ff;stroke-width:22.8813;stroke-linejoin:round"><tspan
+       style="font-weight:bold;font-size:53.3333px;font-family:Junegull;-inkscape-font-specification:'Junegull Bold';letter-spacing:0.47px;white-space:pre;shape-inside:url(#rect1-9);fill:#0000ff;stroke:#000000;stroke-width:2.83465;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"><tspan
          x="149.1543"
          y="221.90752"
-         id="tspan11"><tspan
+         id="tspan8"><tspan
            style="font-family:Gotham;-inkscape-font-specification:'Gotham Bold';fill:#ffffff"
-           id="tspan10">Vote</tspan></tspan></text>
+           id="tspan7">Vote</tspan></tspan></text>
     <text
        xml:space="preserve"
        style="font-weight:bold;font-size:14.1111px;font-family:Junegull;-inkscape-font-specification:'Junegull Bold';letter-spacing:2.05581px;fill:#0000ff;stroke-width:6.05401;stroke-linejoin:round"
