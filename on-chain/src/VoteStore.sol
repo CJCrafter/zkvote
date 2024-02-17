@@ -8,11 +8,11 @@ contract VoteStore {
 
     mapping(uint256 => bool) private spentTicketMapping;
 
-    error VoterAlreadyVoted(uint256 _ticket);
+    error VoterAlreadyVoted();
 
     modifier notVoted(uint256 _spentTicket) {
         if(spentTicketMapping[_spentTicket]){
-            revert VoterAlreadyVoted(_spentTicket);
+            revert VoterAlreadyVoted();
         }
         _;
     }
@@ -29,6 +29,7 @@ contract VoteStore {
         }
 
         s_spentTickets.push(_ticket);
+        spentTicketMapping[_ticket] = true;
     } 
 
     function howManyVoters() public view returns (uint256) {
