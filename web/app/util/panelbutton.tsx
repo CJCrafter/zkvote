@@ -4,7 +4,11 @@ export default function PanelButton(
     return (
         <a
             href={href}
-            className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
+            className="
+                group rounded-lg border border-transparent px-5 py-4 m-2
+                border-gray-200 bg-gray-100
+                hover:border-gray-400 hover:bg-gray-300 transition-colors
+            "
             target="_blank"
             rel="noopener noreferrer"
         >
