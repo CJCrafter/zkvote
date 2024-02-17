@@ -1,0 +1,9 @@
+circuits/build/
+node_modules/
+artifacts/
+cache/
+
+voter.json
+proof.json
+ticket.json
+result.json
