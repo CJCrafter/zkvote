@@ -1,0 +1,95 @@
+.main {
+    height: 100%;
+    width: 100%;
+}
+
+.cards {
+    display: flex;
+    width: 100%;
+    height: 70%;
+    .right {
+        background-color: #462540;
+        overflow: hidden;
+        img {
+            position: absolute;
+            left: -240px;
+            bottom: -610px;
+            width: 80%;
+        }
+    }
+    .left {
+        background-color: #284357;
+        overflow: hidden;
+        img {
+            position: absolute;
+            right: -100px;
+            bottom: -90px;
+            width: 80%;
+            height: 80%;
+        }
+    }
+    .card {
+        width: 50%;
+        height: 100%;
+        position: relative;
+        .amount {
+            position: absolute;
+            top: 70%;
+            width: 80%;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .percentage {
+                color: white;
+                font-size: 38px;
+                font-weight: 700;
+            }
+        }
+        .rightamount {
+            background-color: #970842;
+            left: 0;
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+        .leftamount {
+            background-color: #1190aa;
+            right: 0;
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
+        }
+
+
+        .elmo, .snorlax {
+            //invert image x-axis
+            transform: scaleX(-1);
+        }
+        .elmo {
+            //rotate image by 20 degrees and scaleX by -1
+            transform: rotate(20deg) scaleX(-1);
+        }
+    }
+}
+
+.voter {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .identity {
+        display: flex;
+    flex-direction: column;
+        input {
+            width: 350px;
+            text-align: center;
+            height: 50px;
+            padding: 30px 20px;
+            border: 4px solid black;
+            border-radius: 8px;
+        }
+    }
+}

@@ -1,10 +1,11 @@
 import IconButton from "@/components/iconbutton";
 import Image from "next/image";
+import s from "./navbar.module.scss";
 
 export default function Navbar() {
     return (
         <>
-            <nav className="bg-gray-300 text-white flex justify-between items-center p-4">
+            <nav className={s.navbar}>
                 <Image
                     src="/zk-logo.svg"
                     width={128}
@@ -16,7 +17,6 @@ export default function Navbar() {
                     <IconButton href="" name="Contact" logo="/contact-button.svg" />
                     <span>|</span>
                     <IconButton href="" name="Language" logo="/language-button.svg" />
-
                 </div>
             </nav>
 
