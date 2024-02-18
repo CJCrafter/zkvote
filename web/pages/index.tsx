@@ -1,3 +1,4 @@
+
 import Image from "next/image";
 import ButtonList from "@/components/panelbuttonlist";
 import PanelButton from "@/components/panelbutton";
@@ -13,6 +14,11 @@ export default function Home() {
     const [rightVotes, setRightVotes] = useState(0);
     const finalLeftVotes = 56_312_384;
     const finalRightVotes = 32_497_382;
+
+    let [voterid, setVoterid] = useState('');
+    let [canvote, setCanvote] = useState(false);
+    let [hasticket, setHasticket] = useState(false);
+    let [ticket, setTicket] = useState<any>();
 
     const countVotes = (setVotes: React.Dispatch<React.SetStateAction<number>>, finalVotes: number) => {
         const duration = 10000; // Duration of the animation in milliseconds
@@ -30,6 +36,57 @@ export default function Home() {
             setVotes(Math.ceil(currentVotes));
         }, updateInterval);
     };
+
+    async function checkValidVoter(voterid: string) {
+        const response = await fetch('/api/voter', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ voterid })
+        });
+        const data = await response.json();
+        console.log("---")
+        console.log(data);
+
+        if (response.status === 200) {
+            setCanvote(true);
+        } else {
+            setCanvote(false);
+        }
+    }
+
+    async function generateTicket(voterid: string) {
+        const response = await fetch('/api/ticket', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ voterid })
+        });
+        const data = await response.json();
+        console.log(data);
+
+        if (response.status === 200) {
+            console.log('ticket generated');
+            setTicket(data);
+            setHasticket(true);
+        } else {
+            console.log('ticket not generated');
+        }
+    }
+
+    async function vote(voterid: string, candidate: string) {
+        const response = await fetch('/api/vote', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ ticket, candidate })
+        });
+        const data = await response.json();
+        console.log(data);
+    }
 
     useEffect(() => {
         countVotes(setLeftVotes, finalLeftVotes);
@@ -73,7 +130,10 @@ export default function Home() {
 
                 {
                     hiddenButton ? '' : (
-                        <a href="#vote" onClick={() => setHiddenButton(true)}>
+                        <a href="#vote" onClick={() => {
+                            console.log('vote');
+                            setHiddenButton(true);
+                        }}>
                             VOTE
                         </a>
                     )
@@ -81,12 +141,44 @@ export default function Home() {
 
                 {
                     hiddenButton ? (
-                        <div className={s.identity}>
-                            <input type="text" placeholder="Name"/>
-
-                        </div>
+                        canvote ?
+                            hasticket ?
+                            <div className={s.identity}>
+                                <button
+                                    onClick={() => {
+                                        vote(voterid, 'a');
+                                    }}
+                                >vote for snorlax</button>
+                                <button
+                                    onClick={() => {
+                                        vote(voterid, 'b');
+                                    }}
+                                >vote for elmo</button>
+                            </div> :
+                                <div className={s.identity}>
+                                    <button
+                                        onClick={() => {
+                                            generateTicket(voterid);
+                                        }}
+                                    >generate ticket</button>
+                                </div>
+                            :
+                            <div className={s.identity}>
+                                <input type="text" placeholder="Voter ID"
+                                    onChange={(e) => {
+                                        setVoterid(e.target.value);
+                                    }}
+                                />
+                                <button
+                                    onClick={() => {
+                                        checkValidVoter(voterid);
+                                    }}
+                                >continue</button>
+                            </div>
                     ) : ''
                 }
+
+
             </div>
         </main>
     );
