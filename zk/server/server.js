@@ -192,7 +192,7 @@ app.post('/api/votechain', async (req, res) => {
             const data = tx.encodeABI();
             const nonce = await web3.eth.getTransactionCount(account, 'latest');
             const gasPrice = await web3.eth.getGasPrice();
-            const gasLimit = 3000000;
+            const gasLimit = 10000000;
             const chainId = await web3.eth.net.getId();
             const txData = {
                 from: account,
@@ -203,9 +203,14 @@ app.post('/api/votechain', async (req, res) => {
                 nonce,
                 chainId
             };
-
+            console.log(txData);
+            console.log('sending transaction')
             const signedTx = await web3.eth.accounts.signTransaction(txData, privateKey);
+            console.log('Transaction signed');
+            console.log(signedTx);
             const receipt = await web3.eth.sendSignedTransaction(signedTx.rawTransaction);
+            console.log('Transaction receipt');
+            console.log(receipt);
 
             res.json({ success: "Vote casted successfully" });
         } else {
