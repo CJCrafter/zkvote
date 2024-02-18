@@ -55,7 +55,7 @@ class GridWormCanvas extends Component {
 
     render() {
         return (
-            <canvas ref="canvas" />
+            <canvas ref="canvas" id="wormcanvas"/>
         );
     }
 }
@@ -91,7 +91,7 @@ class GridWorm
         }
         var colors =
             [
-                `rgba(255,0,0,${opacity})`,`rgba(0,0,255,${opacity})`
+                `rgba(151,8,66,${opacity})`,`rgba(17,144,170,${opacity})`
             ];
         if(isRandom)
         {

@@ -3,6 +3,26 @@
 @tailwind utilities;
 * {
 	box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+:root {
+	--gradient-shadow: linear-gradient(
+		45deg,
+		#fb0094,
+		#0000ff,
+		#ff0000,
+		#fb0094,
+		#0000ff,
+		#ff0000,
+        #1190aa,
+        #284357,
+        #462540,
+        #970842,
+        #1190aa,
+        #284357,
+        #462540,
+        #970842
+	);
 }
 
 html,
@@ -12,4 +32,13 @@ div#__next,
 div#__next > div {
 	height: 100%;
 	width: 100%;
+    overflow: hidden;
+}
+
+#wormcanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
