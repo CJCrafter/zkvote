@@ -172,7 +172,60 @@
                 color: white;
             }
         }
+    }
 
+    .generateTicketButton {
+        padding: 5% 5%;
+        border-radius: 8px;
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        background-color: black;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        align-items: center;
 
+        button {
+            width: 30vw;
+            height: 10vh;
+            border-radius: 8px;
+            color: black;
+            background-color: white;
+            font-size: 3vh;
+
+            &:hover {
+                background: linear-gradient(90deg, #1190aa 0%, #970842 100%);
+                color: white;
+            }
+        }
+    }
+
+    .votingButtons{
+        padding: 5% 5%;
+        border-radius: 8px;
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        background-color: black;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        align-items: center;
+
+        button {
+            width: 30vw;
+            height: 10vh;
+            border-radius: 8px;
+            color: black;
+            background-color: white;
+            font-size: 3vh;
+            margin-bottom: 2vh;
+
+            &:hover {
+                background: linear-gradient(90deg, #1190aa 0%, #970842 100%);
+                color: white;
+            }
+        }
     }
 }

@@ -12,6 +12,7 @@ export default function Home() {
 
     let [hiddenButton, setHiddenButton] = useState(false);
     let [invalidVoter, setInvalidVoter] = useState(false);
+    let [generatingTicket, setGeneratingTicket] = useState(false);
     const [leftVotes, setLeftVotes] = useState(0);
     const [rightVotes, setRightVotes] = useState(0);
     const finalLeftVotes = 1_312_384;
@@ -172,24 +173,30 @@ export default function Home() {
                     hiddenButton ? (
                         canvote ?
                             hasticket ?
-                            <div className={s.identity}>
+                            <div className={s.votingButtons}>
                                 <button
                                     onClick={() => {
                                         vote(voterid, 'a');
                                     }}
-                                >vote for snorlax</button>
+                                >Vote For Snorlax</button>
                                 <button
                                     onClick={() => {
                                         vote(voterid, 'b');
                                     }}
-                                >vote for elmo</button>
+                                >Vote For Among Us</button>
                             </div> :
-                                <div className={s.identity}>
-                                    <button
+                                <div className={s.generateTicketButton}>
+                                    {generatingTicket ? 
+                                        <p className=" text-white text-2xl">
+                                            Generating...</p>
+                                    : 
+                                        <button
                                         onClick={() => {
                                             generateTicket(voterid);
+                                            setGeneratingTicket(true);
                                         }}
-                                    >generate ticket</button>
+                                    >Generate Ticket</button>
+                                }
                                 </div>
                             :
                             <div className={`${s.identity} voterIdButton`}>
