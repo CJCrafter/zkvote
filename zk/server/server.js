@@ -90,7 +90,7 @@ const contractABI = [
         "type": "function"
     }
 ]
-const contractAddress = '0x73D240aAef9838B49C7341d519B5Cc962a16D671'; // Contract address on the blockchain
+const contractAddress = '0x352B0807D1Cd02ac91C5eda537F60B30432F9d89'; // Contract address on the blockchain
 const contract = new web3.eth.Contract(contractABI, contractAddress);
 
 const account = '0x5428B20B352a0863F0178295AE66db9862378F31'
