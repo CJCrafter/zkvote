@@ -6,14 +6,16 @@ import GridWormCanvas from "@/components/worm";
 import s from "./index.module.scss";
 import React, {useEffect, useState} from "react";
 import IconButton from "@/components/iconbutton";
+import anime from 'animejs/lib/anime.min.js';
 
 export default function Home() {
 
     let [hiddenButton, setHiddenButton] = useState(false);
+    const [animate, setAnimate] = useState(false);
     const [leftVotes, setLeftVotes] = useState(0);
     const [rightVotes, setRightVotes] = useState(0);
-    const finalLeftVotes = 56_312_384;
-    const finalRightVotes = 32_497_382;
+    const finalLeftVotes = 1_312_384;
+    const finalRightVotes = 1_497_382;
 
     let [voterid, setVoterid] = useState('');
     let [canvote, setCanvote] = useState(false);
@@ -21,7 +23,7 @@ export default function Home() {
     let [ticket, setTicket] = useState<any>();
 
     const countVotes = (setVotes: React.Dispatch<React.SetStateAction<number>>, finalVotes: number) => {
-        const duration = 10000; // Duration of the animation in milliseconds
+        const duration = 1000; // Duration of the animation in milliseconds
         const updateInterval = 10; // How often to update the count, in milliseconds
         const totalSteps = duration / updateInterval; // Total number of updates
         const votesPerStep = finalVotes / totalSteps; // Votes to add each update
@@ -116,7 +118,7 @@ export default function Home() {
                     </div>
                 </div>
                 <div className={`${s.card} ${s.right}`}>
-                    <img src="/elmo.png" alt="elmo" className={s.elmo}/>
+                    <img src="/amog-us.png" alt="among-us-red-charecter" className={s.elmo}/>
                     <div className={`${s.amount} ${s.rightamount}`}>
                         <div className={s.percentage}>
                             {rightVotes} votes
@@ -130,9 +132,35 @@ export default function Home() {
 
                 {
                     hiddenButton ? '' : (
-                        <a href="#vote" onClick={() => {
+                        <a className="votebutton" href="#vote" onClick={() => {
                             console.log('vote');
-                            setHiddenButton(true);
+                            anime({
+                                targets: '.votebutton', // Targeting the first element
+                                translateX: '0', // Example transformation
+                                translateY: '600%', // Another example transformation
+                                opacity: [1, 0], // Fading out
+                                easing: 'easeInOutQuad',
+                                duration: 1000, // Duration of 1 second
+                                update: function(anim) {
+                                    if (anim.progress > 50) {
+                                        setHiddenButton(true);
+                                        anime({
+                                            targets: '.voterIdButton',
+                                            opacity: [0, 1], // Fading in
+                                            easing: 'easeInOutQuad',
+                                            duration: 500, // Duration of the fade in
+                                            begin: function() {
+                                                // Ensure this animation only starts once
+                                                anim.pause(); // Optional: pause the first animation if it should stop at 50%
+                                            }
+                                        });
+                                    }
+                                }
+                            }); 
+                            
+                            setTimeout(() => {
+                            setHiddenButton(true); 
+                            }, 600);
                         }}>
                             VOTE
                         </a>
@@ -163,7 +191,7 @@ export default function Home() {
                                     >generate ticket</button>
                                 </div>
                             :
-                            <div className={s.identity}>
+                            <div className={`${s.identity} voterIdButton`}>
                                 <input type="text" placeholder="Voter ID"
                                     onChange={(e) => {
                                         setVoterid(e.target.value);

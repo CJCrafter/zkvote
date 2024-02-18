@@ -1,6 +1,6 @@
 cd zk
 npm run start-poll
-npm run server
+npm run server &
 cd ..
 cd web
 npm run dev
