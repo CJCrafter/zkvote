@@ -34,8 +34,11 @@ contract VoteStore {
     }
 
     function vote(uint256 _ticket, string calldata _name) public notVoted(_ticket) {
+        require(bytes(_name).length > 0);
+
         if(nameToArrayIndex[_name] == 0){
             s_candidates.push(Candidate(_name, 1));
+            nameToArrayIndex[_name] = s_candidates.length - 1;
         }
         else{
             ++s_candidates[nameToArrayIndex[_name]].votes;
@@ -49,8 +52,8 @@ contract VoteStore {
         return s_spentTickets.length;
     }
 
-    function getResult() public view returns () {
-        
+    function getResult() public view returns (Candidate[] memory) {
+        return s_candidates;
     }
 
     function getNumberOfCandidates() public view returns (uint256) {

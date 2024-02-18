@@ -13,44 +13,31 @@ contract VoteStoreTest is Test {
         voteStore = new VoteStore();
     }
 
-    function testVoteForOptionA() public {
-        voteStore.vote(1, true);
-        (uint256 votesForA, ) = voteStore.getResult();
-        assertEq(votesForA, 1, "Vote for A should be counted");
+    function testInitialVoteCount() public {
+        assertEq(voteStore.getNumberOfCandidates(), 0);
     }
 
-    function testVoteForOptionB() public {
-        voteStore.vote(2, false);
-        (, uint256 votesForB) = voteStore.getResult();
-        assertEq(votesForB, 1, "Vote for B should be counted");
+    function testVote() public {
+        voteStore.vote(1, "Alice");
+        assertEq(voteStore.howManyVoters(), 1);
     }
 
-    function testHasVotedAfterVoting() public {
-        uint256 ticket = 3;
-        voteStore.vote(ticket, true);
-        assertTrue(voteStore.hasVoted(ticket), "Voter should be marked as voted");
+    function testMultipleVotesForSameCandidate() public {
+        voteStore.vote(1, "Alice");
+        voteStore.vote(2, "Alice");
+        assertEq(voteStore.howManyVoters(), 2);
+        VoteStore.Candidate[] memory candidates = voteStore.getResult();
+        assertEq(candidates[1].votes, 2);
     }
 
-    function testCannotVoteTwice() public {
-        uint256 ticket = 4;
-        voteStore.vote(ticket, true);
+    function testVoterAlreadyVoted() public {
+        voteStore.vote(1, "Alice");
         vm.expectRevert(VoteStore.VoterAlreadyVoted.selector);
-        voteStore.vote(ticket, false); 
+        voteStore.vote(1, "Bob");
     }
 
-    function testHowManyVoters() public {
-        voteStore.vote(5, true);
-        voteStore.vote(6, false);
-        uint256 voters = voteStore.howManyVoters();
-        assertEq(voters, 2, "There should be 2 voters");
-    }
-
-    function testGetResult() public {
-        voteStore.vote(7, true);
-        voteStore.vote(8, false);
-        voteStore.vote(9, true);
-        (uint256 votesForA, uint256 votesForB) = voteStore.getResult();
-        assertEq(votesForA, 2, "Votes for A should be 2");
-        assertEq(votesForB, 1, "Votes for B should be 1");
+    function testHasVoted() public {
+        voteStore.vote(1, "Alice");
+        assertTrue(voteStore.hasVoted(1));
     }
 }
