@@ -11,7 +11,7 @@ import anime from 'animejs/lib/anime.min.js';
 export default function Home() {
 
     let [hiddenButton, setHiddenButton] = useState(false);
-    const [animate, setAnimate] = useState(false);
+    let [invalidVoter, setInvalidVoter] = useState(false);
     const [leftVotes, setLeftVotes] = useState(0);
     const [rightVotes, setRightVotes] = useState(0);
     const finalLeftVotes = 1_312_384;
@@ -55,6 +55,7 @@ export default function Home() {
             setCanvote(true);
         } else {
             setCanvote(false);
+            setInvalidVoter(true);
         }
     }
 
@@ -201,7 +202,12 @@ export default function Home() {
                                     onClick={() => {
                                         checkValidVoter(voterid);
                                     }}
-                                >continue</button>
+                                >Submit</button>
+                                {invalidVoter ? (
+                                    <p className="text-red-600 mt-5 text-lg">
+                                        Invalid Voter Id
+                                    </p>
+                                ) : ''}
                             </div>
                     ) : ''
                 }
