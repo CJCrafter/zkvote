@@ -23,6 +23,10 @@ export default function Home() {
     let [hasticket, setHasticket] = useState(false);
     let [ticket, setTicket] = useState<any>();
 
+    let [voting, setVoting] = useState(false);
+    let [votepassed, setVotepassed] = useState(false);
+    let [votefailed, setVotefailed] = useState(false);
+
     const countVotes = (setVotes: React.Dispatch<React.SetStateAction<number>>, finalVotes: number) => {
         const duration = 1000; // Duration of the animation in milliseconds
         const updateInterval = 10; // How often to update the count, in milliseconds
@@ -81,6 +85,7 @@ export default function Home() {
     }
 
     async function vote(voterid: string, candidate: string) {
+        setVoting(true);
         const response = await fetch('/api/vote', {
             method: 'POST',
             headers: {
@@ -89,7 +94,16 @@ export default function Home() {
             body: JSON.stringify({ ticket, candidate })
         });
         const data = await response.json();
+        if (response.status === 200) {
+            console.log('vote successful');
+            setVotepassed(true);
+        } else {
+            console.log('vote unsuccessful');
+            setVotepassed(false);
+            setVotefailed(true);
+        }
         console.log(data);
+        setVoting(false);
     }
 
     useEffect(() => {
@@ -184,6 +198,27 @@ export default function Home() {
                                         vote(voterid, 'b');
                                     }}
                                 >Vote For Among Us</button>
+                                {
+                                    votepassed ? (
+                                        <p className="text-green-600 mt-5 text-lg">
+                                            Vote Passed
+                                        </p>
+                                    ) : ''
+                                }
+                                {
+                                    votefailed ? (
+                                        <p className="text-red-600 mt-5 text-lg">
+                                            Vote Failed
+                                        </p>
+                                    ) : ''
+                                }
+                                {
+                                    voting ? (
+                                        <p className="text-white mt-5 text-lg">
+                                            Voting...
+                                        </p>
+                                    ) : ''
+                                }
                             </div> :
                                 <div className={s.generateTicketButton}>
                                     {generatingTicket ? 

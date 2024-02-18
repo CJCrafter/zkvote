@@ -113,14 +113,17 @@ const voters = [
 app.use(express.json());
 
 app.post('/api/checkvalidvoter', async (req, res) => {
+    console.log("check valid voter ========================")
     try {
         const { addr } = req.body;
-        console.log(addr);
+        //console.log(addr);
         const valid = voters.includes(addr);
-        console.log(valid);
+        //console.log(valid);
         if (valid) {
+            console.log("valid voter!")
             res.json({ valid });
         } else {
+            console.log("invalid voter!")
             res.status(401).json({ valid });
         }
     } catch (error) {
@@ -131,9 +134,11 @@ app.post('/api/checkvalidvoter', async (req, res) => {
 
 // GET check balance on chain
 app.post("/api/hasvoted", async (req, res) => {
+    console.log("hasvoted ========================");
     try {
         const { addr } = req.body;
         const hasVoted = await contract.methods.hasVoted(addr).call();
+        console.log("hasVoted: " + hasVoted);
         res.json({ hasVoted });
 
     } catch (error) {
@@ -144,11 +149,12 @@ app.post("/api/hasvoted", async (req, res) => {
 
 // GET get ticket
 app.post('/api/getTicket', async (req, res) => {
-    console.log("getticket");
+    console.log("getting ticket ========================");
     try {
         const { addr } = req.body;
-        console.log(addr);
+        //console.log(addr);
         const ticket = await svGetTicket(addr);
+        console.log("ticket:")
         console.log(ticket);
         res.json({ ticket });
     } catch (error) {
@@ -170,21 +176,23 @@ app.get('/api/stats', async (req, res) => {
 
 // POST endpoint
 app.post('/api/votechain', async (req, res) => {
+    console.log("voting on chain ========================");
     try {
-        console.log(req.body);
+        /* console.log(req.body); */
         const { vote, ticket } = req.body;
 
         let jsonticket = JSON.parse(ticket)["ticket"];
+        console.log("ticket -------------------")
         console.log(jsonticket);
         console.log("--------------------");
 
         const svproof = jsonticket.proof;
         const svpublicSignals = jsonticket.publicSignals;
         const hasVoted = await contract.methods.hasVoted(svpublicSignals[1]).call();
-        console.log(hasVoted);
+        console.log("has previosuly voted: ", hasVoted);
 
         const isVerified = await verify(svproof, svpublicSignals);
-        console.log(isVerified);
+        console.log("is valid voter: ", isVerified);
 
         if (hasVoted == false && isVerified == true) {
             // sign and send transaction
@@ -192,19 +200,17 @@ app.post('/api/votechain', async (req, res) => {
             const data = tx.encodeABI();
             const nonce = await web3.eth.getTransactionCount(account, 'latest');
             const gasPrice = await web3.eth.getGasPrice();
-            const gasLimit = 10000000;
             const chainId = await web3.eth.net.getId();
             const txData = {
                 from: account,
                 to: contractAddress,
                 data,
-                gas: gasLimit,
                 gasPrice,
                 nonce,
                 chainId
             };
-            console.log(txData);
             console.log('sending transaction')
+            console.log(txData);
             const signedTx = await web3.eth.accounts.signTransaction(txData, privateKey);
             console.log('Transaction signed');
             console.log(signedTx);
@@ -215,7 +221,8 @@ app.post('/api/votechain', async (req, res) => {
             res.json({ success: "Vote casted successfully" });
         } else {
             console.log("Vote failed, wrong ticket or already spent ticket");
-            res.json({ error: "Vote failed, wrong ticket or already spent ticket" });
+            //make this a 400
+            res.status(400).json({ error: "Vote failed, wrong ticket or already spent ticket" });
         }
 
     } catch (error) {
