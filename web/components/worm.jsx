@@ -69,11 +69,7 @@ class GridWorm
         this.yCoord  = point.y;
         this.interval= interval;
         this.color = this.getColor(1,true);//get random color object
-        this.mainColor = this.color.color;//color of the head and body of the girdworm
         this.mainColorIndex = this.color.index;
-        this.nColor = this.getColor(1,true);//get another random color object
-        this.arrowHeadColor = this.nColor.color;//color of the arrrow points at the head of the gridworm
-        this.arrowHeadColorIndex = this.nColor.index;
         this.pointsList = pointsList;
         this.screenWidth = screenWidth;
         this.screenHeight= screenHeight;
@@ -293,14 +289,9 @@ class Painter
     {
         this.screenWidth    = screenWidth;
         this.screenHeight   = screenHeight;
-        this.interval       = 40;//interval from one point to the next
+        this.interval       = 80;//interval from one point to the next
         this.points         = this.createPoints(); //coordinates of the vertices of all squares when the canvas is partitioned
         this.gridWorms      = this.createGridWorms();
-        document.addEventListener('click',(event)=>//when user clicks on the canvas
-        {
-            this.points     = this.createPoints();
-            this.gridWorms  = this.createGridWorms();//spawn new gridworms
-        });
     }
     createGridWorms()
     {
