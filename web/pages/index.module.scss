@@ -34,9 +34,10 @@
         overflow: hidden;
         img {
             position: absolute;
-            left: -240px;
-            bottom: -610px;
+            left: -10%;
+            bottom: -40%;
             width: 80%;
+            transform: rotate(90deg);
         }
     }
     .left {
@@ -44,8 +45,8 @@
         overflow: hidden;
         img {
             position: absolute;
-            right: -100px;
-            bottom: -90px;
+            right: -20%;
+            bottom: -3%;
             width: 80%;
             height: 80%;
         }
