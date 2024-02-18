@@ -8,7 +8,7 @@ const { svGetTicket } = require(`${appRoot}/scripts/getTicket.js`);
 const { svVote } = require(`${appRoot}/scripts/vote.js`);
 const { verify } = require(`${appRoot}/scripts/utils/verify.js`);
 
-const rpcURL = 'https://ethereum-sepolia.publicnode.com';
+const rpcURL = 'https://eth-sepolia.g.alchemy.com/v2/fxzqWtmonnV7Y1Ibbx3k6SnE-RS7iEys';
 
 const { Web3 } = require('web3');
 
