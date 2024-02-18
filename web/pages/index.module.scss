@@ -3,6 +3,27 @@
     width: 100%;
 }
 
+.header {
+    right: 0;
+    position: fixed;
+    height: 40px;
+    background-color: transparent;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+
+    a {
+        color: white;
+    }
+}
+
+.space {
+    display: inline;
+    margin: 4px 8px;
+}
+
 .cards {
     position: fixed;
     display: flex;
